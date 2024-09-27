@@ -18,6 +18,15 @@ export type NewPasswordForm = Pick<Auth, 'password' | 'password_confirmation'>
 
 export type ConfirmToken = Pick<Auth, 'token'>
 
+// User
+export const userSchema = authSchema.pick({
+    name: true,
+    email: true
+}).extend({
+    _id: z.string()
+})
+export type User = z.infer<typeof userSchema>
+
 // Projects
 // Esquema para proyectos
 export const projectSchema = z.object({
